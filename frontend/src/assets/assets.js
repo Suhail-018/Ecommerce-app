@@ -40,6 +40,7 @@ import paypal5  from './images/icon/paypal5.jpg'
 import search_icon  from './images/icon/search.png'
 import  contact_icon from './images/icon/contact.png'
 import cart_icon  from './images/icon/shopping-bag.png'
+import menu  from './images/icon/menu.png'
 // newproduct
 import N11  from './images/new-product/N1-1.png'
 import N12 from './images/new-product/N1-2.png'
@@ -250,6 +251,7 @@ export const assets={
     search_icon,
     cart_icon,
     contact_icon,
+    menu
 
 }
 
