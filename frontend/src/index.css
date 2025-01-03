@@ -1,7 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poiret+One&family=Prata&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 a.active hr{
-
+/* by using the active proerty in navlink tag which comes when the to link matches the current url, whuch active is added to class */
   display:block;
+}
+*{
+  font-family: Outfit;
+}
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media (max-width:640px) {
+  a.active{
+    background-color: black;
+    color:white;
+  }
+  
 }

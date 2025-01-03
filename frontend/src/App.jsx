@@ -16,18 +16,19 @@ const App = () => {
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
 {/* mounting the navbar so that it apears in all pages */}
       <Navbar />
+      
 
       <Routes>
 
-        <Route paths='/' element={<Home/>}/>
-        <Route paths='/collection' element={<Collection/>}/>
-        <Route paths='/about' element={<About/>}/>
-        <Route paths='/contact' element={<Contact/>}/>
-        <Route paths='/product/:productId' element={<Product/>}/>
-        <Route paths='/cart' element={<Cart/>}/>
-        <Route paths='/login' element={<Login/>}/>
-        <Route paths='/place-order' element={<PlaceOrder/>}/>
-        <Route paths='/orders' element={<Orders/>}/>
+        <Route path='/' element={<Home />}/>
+        <Route path='/collection' element={<Collection />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact/>} />
+        <Route path='/product/:productId' element={<Product/>} />
+        <Route path='/cart' element={<Cart/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/place-order' element={<PlaceOrder/>} />
+        <Route path='/orders' element={<Orders/>} />
         
       </Routes>
       

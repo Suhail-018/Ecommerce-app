@@ -128,9 +128,10 @@ import mini2 from './images/small-product/mini2.png'
 import testmn1 from './images/testimonial/testimonial1.jpg'
 import testmn2 from './images/testimonial/testimonial2.jpg' 
 import testmn3 from './images/testimonial/testimonial3.jpg'
+import photo from './images/photo_2024-09-02_01-49-51.jpg'
 
-
-
+import logo1 from './images/photo_2025-01-03_04-18-18.jpg'
+import logo2 from './images/photo_2025-01-03_04-18-37.jpg'
 
 
 
@@ -251,9 +252,219 @@ export const assets={
     search_icon,
     cart_icon,
     contact_icon,
-    menu
+    menu,
+    photo,
+    logo1,
+    logo2
 
 }
+
+const products = [
+    {
+      _id: 1,
+      name: 'Boss Hugo',
+      description: 'A luxurious and sophisticated fragrance for modern men.',
+      price: 899,
+      image: [M11, M12],
+      category: 'Men',
+      subcategory: 'Office Wear',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: true,
+    },
+    {
+      _id: 2,
+      name: 'Gentleman Givenchy',
+      description: 'A bold and woody scent with a touch of spice.',
+      price: 1100,
+      image: [M21, M22],
+      category: 'Men',
+      subcategory: 'Evening Wear',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: false,
+    },
+    {
+      _id: 3,
+      name: 'Dior Sauvage',
+      description: 'A fresh and vibrant fragrance inspired by nature.',
+      price: 1200,
+      image: [M31, M32],
+      category: 'Men',
+      subcategory: 'Casual Wear',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: true,
+    },
+    {
+      _id: 4,
+      name: 'Armani Code',
+      description: 'A timeless classic for charismatic men.',
+      price: 950,
+      image: [M41, M42],
+      category: 'Men',
+      subcategory: 'Date Night',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: true,
+    },
+    {
+      _id: 5,
+      name: 'Paco Rabanne Invictus',
+      description: 'A dynamic and powerful scent for the confident man.',
+      price: 1050,
+      image: [M51, M52],
+      category: 'Men',
+      subcategory: 'Sports',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: false,
+    },
+    {
+      _id: 6,
+      name: 'Yves Saint Laurent La Nuit de L’Homme',
+      description: 'An intense and seductive fragrance.',
+      price: 1250,
+      image: [M61, M62],
+      category: 'Men',
+      subcategory: 'Luxury',
+      sizes: ['EDT', 'EDP', 'PARFUM'],
+      bestseller: true,
+    },
+    // Unisex
+  {
+    _id: 7,
+    name: 'Tom Ford Oud Wood',
+    description: 'An exotic, smoky, and woody fragrance.',
+    price: 450,
+    image: [U11, U12],
+    category: 'Unisex',
+    subcategory: 'Cold',
+    sizes: ['EDT', 'EDP', 'PARFUM'],
+    bestseller: true,
+  },
+  {
+    _id: 8,
+    name: 'Creed Aventus',
+    description: 'A bold and fruity fragrance perfect for any occasion.',
+    price: 500,
+    image: [U21, U22],
+    category: 'Unisex',
+    subcategory: 'Rainy',
+    sizes: ['EDT', 'EDP'],
+    bestseller: false,
+  },
+  {
+    _id: 9,
+    name: 'Jo Malone Wood Sage & Sea Salt',
+    description: 'A light and breezy fragrance with a coastal vibe.',
+    price: 350,
+    image: [U31, U32],
+    category: 'Unisex',
+    subcategory: 'Warm',
+    sizes: ['EDP', 'PARFUM'],
+    bestseller: true,
+  },
+  {
+    _id: 10,
+    name: 'Le Labo Santal 33',
+    description: 'A spicy and woody fragrance for a contemporary feel.',
+    price: 400,
+    image: [U41, U42],
+    category: 'Unisex',
+    subcategory: 'Cold',
+    sizes: ['EDT', 'EDP', 'PARFUM'],
+    bestseller: false,
+  },
+  {
+    _id: 11,
+    name: 'Byredo Gypsy Water',
+    description: 'An enchanting fragrance inspired by nomadic life.',
+    price: 300,
+    image: [U51, U52],
+    category: 'Unisex',
+    subcategory: 'Rainy',
+    sizes: ['EDT', 'EDP'],
+    bestseller: false,
+  },
+  {
+    _id: 12,
+    name: 'Maison Margiela Replica',
+    description: 'A fresh and aromatic fragrance for all seasons.',
+    price: 270,
+    image: [U61, U62],
+    category: 'Unisex',
+    subcategory: 'Warm',
+    sizes: ['EDP', 'PARFUM'],
+    bestseller: true,
+  },
+  // Women
+  {
+    _id: 13,
+    name: 'Chanel No. 5',
+    description: 'An iconic and timeless floral fragrance.',
+    price: 400,
+    image: [W11, W12],
+    category: 'Women',
+    subcategory: 'Warm',
+    sizes: ['EDT', 'EDP', 'PARFUM'],
+    bestseller: true,
+  },
+  {
+    _id: 14,
+    name: 'Dolce & Gabbana Light Blue',
+    description: 'A fresh and citrusy scent for the summer.',
+    price: 350,
+    image: [W21, W22],
+    category: 'Women',
+    subcategory: 'Warm',
+    sizes: ['EDT', 'EDP'],
+    bestseller: false,
+  },
+  {
+    _id: 15,
+    name: 'Lancôme La Vie Est Belle',
+    description: 'A sweet and fruity fragrance.',
+    price: 300,
+    image: [W31, W32],
+    category: 'Women',
+    subcategory: 'Rainy',
+    sizes: ['EDP', 'PARFUM'],
+    bestseller: true,
+  },
+  {
+    _id: 16,
+    name: 'Gucci Bloom',
+    description: 'A floral fragrance perfect for spring.',
+    price: 270,
+    image: [W41, W42],
+    category: 'Women',
+    subcategory: 'Cold',
+    sizes: ['EDP'],
+    bestseller: false,
+  },
+  {
+    _id: 17,
+    name: 'Marc Jacobs Daisy',
+    description: 'A youthful and playful fragrance.',
+    price: 200,
+    image: [W51, W52],
+    category: 'Women',
+    subcategory: 'Rainy',
+    sizes: ['EDT'],
+    bestseller: true,
+  },
+  {
+    _id: 18,
+    name: 'YSL Black Opium',
+    description: 'A warm and seductive fragrance for nights out.',
+    price: 500,
+    image: [W61, W62],
+    category: 'Women',
+    subcategory: 'Cold',
+    sizes: ['EDP', 'PARFUM'],
+    bestseller: true,
+  },
+];
+
+  
+  
+  export default products;
 
 
  
