@@ -41,6 +41,15 @@ import search_icon  from './images/icon/search.png'
 import  contact_icon from './images/icon/contact.png'
 import cart_icon  from './images/icon/shopping-bag.png'
 import menu  from './images/icon/menu.png'
+import earphone from './images/icon/earphone.png'
+import exchange from './images/icon/exchange.png'
+import returns  from  './images/icon/return.png'
+import dropdown_icon  from  './images/icon/dropdown.png'
+import cartdwd from './images/icon/cartdwd.png'
+import profile from './images/icon/profile.png'
+
+
+
 // newproduct
 import N11  from './images/new-product/N1-1.png'
 import N12 from './images/new-product/N1-2.png'
@@ -255,7 +264,13 @@ export const assets={
     menu,
     photo,
     logo1,
-    logo2
+    logo2,
+    returns,
+    earphone,
+    exchange,
+    dropdown_icon,
+    cartdwd,
+    profile
 
 }
 
@@ -267,7 +282,7 @@ const products = [
       price: 899,
       image: [M11, M12],
       category: 'Men',
-      subcategory: 'Office Wear',
+      subcategory: 'Warm',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: true,
     },
@@ -278,7 +293,7 @@ const products = [
       price: 1100,
       image: [M21, M22],
       category: 'Men',
-      subcategory: 'Evening Wear',
+      subcategory: 'Cold',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: false,
     },
@@ -289,7 +304,7 @@ const products = [
       price: 1200,
       image: [M31, M32],
       category: 'Men',
-      subcategory: 'Casual Wear',
+      subcategory: 'Warm',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: true,
     },
@@ -300,7 +315,7 @@ const products = [
       price: 950,
       image: [M41, M42],
       category: 'Men',
-      subcategory: 'Date Night',
+      subcategory: 'Warm',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: true,
     },
@@ -311,7 +326,7 @@ const products = [
       price: 1050,
       image: [M51, M52],
       category: 'Men',
-      subcategory: 'Sports',
+      subcategory: 'Cold',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: false,
     },
@@ -322,7 +337,7 @@ const products = [
       price: 1250,
       image: [M61, M62],
       category: 'Men',
-      subcategory: 'Luxury',
+      subcategory: 'Rainy',
       sizes: ['EDT', 'EDP', 'PARFUM'],
       bestseller: true,
     },
