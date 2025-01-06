@@ -47,6 +47,7 @@ import returns  from  './images/icon/return.png'
 import dropdown_icon  from  './images/icon/dropdown.png'
 import cartdwd from './images/icon/cartdwd.png'
 import profile from './images/icon/profile.png'
+import cross_icon from './images/icon/cross_icon.png'
 
 
 
@@ -270,7 +271,8 @@ export const assets={
     exchange,
     dropdown_icon,
     cartdwd,
-    profile
+    profile,
+    cross_icon
 
 }
 
