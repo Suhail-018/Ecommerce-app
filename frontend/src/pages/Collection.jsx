@@ -59,6 +59,7 @@ const applyFilter = () => {
     }
   setFilterProducts(productsCopy)
 }
+// productcopy is the mutable value that stores the filtered ,searched products and then sets it to setfilter which will help render it , and keepng al values in state helps render when searche , catagory, ... are changed 
 
 useEffect(()=>{
   applyFilter()
@@ -175,7 +176,7 @@ useEffect(()=>{
               {
                 filterProducts.map((item, index) =>(
 
-                  <ProductItem key={index} name={item.name} id={item.id} price={item.price} image={item.image} />
+                  <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
                 ))
               }
 

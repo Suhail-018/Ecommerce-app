@@ -48,6 +48,7 @@ import dropdown_icon  from  './images/icon/dropdown.png'
 import cartdwd from './images/icon/cartdwd.png'
 import profile from './images/icon/profile.png'
 import cross_icon from './images/icon/cross_icon.png'
+import star_icon from './images/icon/star_icon.png'
 
 
 
@@ -272,7 +273,8 @@ export const assets={
     dropdown_icon,
     cartdwd,
     profile,
-    cross_icon
+    cross_icon,
+    star_icon
 
 }
 
