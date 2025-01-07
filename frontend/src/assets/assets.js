@@ -49,6 +49,8 @@ import cartdwd from './images/icon/cartdwd.png'
 import profile from './images/icon/profile.png'
 import cross_icon from './images/icon/cross_icon.png'
 import star_icon from './images/icon/star_icon.png'
+import stripe from './images/icon/stipe.png'
+import razorpay from './images/icon/razorpay.png'
 
 
 
@@ -274,7 +276,9 @@ export const assets={
     cartdwd,
     profile,
     cross_icon,
-    star_icon
+    star_icon,
+    stripe,
+    razorpay,
 
 }
 
