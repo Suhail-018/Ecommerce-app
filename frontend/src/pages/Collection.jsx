@@ -7,7 +7,7 @@ import { use } from 'react';
 
 const Collection = () => {
 
-  const {products, showSearch, search} = useContext(ShopContext);
+  const {products, showSearch,  search} = useContext(ShopContext);
 
   const [showFilter, setShowFilter] = useState(false);
 
@@ -64,7 +64,7 @@ const applyFilter = () => {
 useEffect(()=>{
   applyFilter()
 
-}, [category, subCategory, showSearch, search])
+}, [category, subCategory, showSearch, search, products])
 //  useEffect(() =>{
 //   console.log(subCategory)
 //  }, [subCategory])
