@@ -7,10 +7,96 @@ import { ShopContext } from '../context/ShopContext'
 const PlaceOrder = () => {
 
   const [method, setMethod] = useState('cod');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    country: '',
+    phone: ''
+  });
+  
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+  
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+  
+    try {
+      let orderItems = [];
+  
+      // Loop through cartItems to structure the order data
+      for (const itemId in cartItems) {
+        for (const size in cartItems[itemId]) {
+          if (cartItems[itemId][size] > 0) {
+            const itemInfo = structuredClone(
+              products.find((product) => product._id === itemId)
+            );
+  
+            if (itemInfo) {
+              itemInfo.size = size; // Add size to the item data
+              itemInfo.quantity = cartItems[itemId][size]; // Add quantity to the item data
+              orderItems.push(itemInfo); // Push the structured item to the order array
+            }
+          }
+        }
+      }
+  
+      // console.log(orderItems); // Verify the structured orderItems array
+      let orderData = {
+        address: formData,
+        items: orderItems,
+        amount: getCartAmount() + delivery_fee,
+      };
+      
+      switch (method) {
+        // API Call for COD
+        case 'COD':
+          try {
+            const response = await axios.post(
+              backendUrl + '/api/order/place',
+              orderData,
+              { headers: { token } }
+
+            );
+      
+            if (response.data.success) {
+              setCartItems({});
+              navigate('/orders'); // Navigate to orders page on success
+            } else {
+              toast.error(response.data.message); // Display error message
+            }
+          } catch (error) {
+            console.error(error); // Log the error for debugging
+            toast.error('Something went wrong while placing the order.'); // Display generic error
+          }
+          break;
+      
+        default:
+          toast.error('Invalid payment method selected.'); // Handle unsupported methods
+          break;
+      }
+      
+    } catch (error) {
+      console.error("Error in onSubmitHandler:", error.message);
+    }
+  };
+  
+  
 
   const {navigate} = useContext(ShopContext)
   return (
-    <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-1 min-h-[80vh] border-t'>
+    <form onSubmit={onSubmitHandler} className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-1 min-h-[80vh] border-t'>
       {/* Left Side */}
         <div className="flex flex-col gap-4 w-full sm:max-w-[480px]">
             <div className="text-xl sm:text-2xl my-3">
@@ -18,28 +104,54 @@ const PlaceOrder = () => {
             </div>
 
             <div className="flex gap-3">
-                <input 
+                <input required onChange={onChangeHandler}
+                 name='firstName'
+                  value={formData.firstName}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text"  placeholder="First Name"/>
-                <input 
+                <input required 
+                  onChange={onChangeHandler}
+                  name='lastName'
+                  value={formData.lastName}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text" placeholder="Last Name"/>
             </div>
-            <input 
+            <input required 
+            onChange={onChangeHandler}
+            name='email'
+            value={formData.email}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="email" placeholder="Email address"/>
-            <input 
+            <input required 
+             onChange={onChangeHandler}
+             name='street'
+             value={formData.street}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text" placeholder="Street"/>
             <div className="flex gap-3">
-                <input 
+                <input required 
+                onChange={onChangeHandler}
+                name='city'
+                value={formData.city}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text"  placeholder="City"/>
-                <input 
+                <input required 
+                onChange={onChangeHandler}
+                name='state'
+                value={formData.state}
                   className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text" placeholder="State"/>
             </div>
             <div className="flex gap-3">
-              <input 
+              <input required 
+                onChange={onChangeHandler}
+                name='zipcode'
+                value={formData.zipcode}
                 className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="number"  placeholder="Zipcode"/>
-              <input 
+              <input required 
+                onChange={onChangeHandler}
+                name='country'
+                value={formData.country}
                 className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="text" placeholder="statecode"/>
             </div>
-            <input 
+            <input required 
+            onChange={onChangeHandler}
+            name='phone'
+            value={formData.phone}
                 className="border border-gray-300 rounded py-1.5 px-3.5 w-full" type="number" placeholder="Phonenumber"/>
 
         </div>
@@ -62,7 +174,7 @@ const PlaceOrder = () => {
                   <div onClick={()=>setMethod('razorpay')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
                     <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'razorpay' ? 'bg-green-400' : ''}`}></p>
                     <img className="h-5 mx-4" src={assets.razorpay} alt="Razorpay Logo" />
-                  </div>
+             required    </div>
                   <div onClick={()=>setMethod('cod')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
                     <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'cod' ? 'bg-green-400' : ''}`}></p>
                     <p className='text-gray-500 text-sm font-medium mx-4'> CASH ON DELIVERY</p>
@@ -71,7 +183,7 @@ const PlaceOrder = () => {
                
               </div>
               <div className='w-full text-end mt-8'>
-                <button onClick={()=>navigate('/orders')} className='bg-black text-white text-sm  px-16 py-3'>PLACE ORDER</button>
+                <button type='submit' onClick={()=>navigate('/orders')} className='bg-black text-white text-sm  px-16 py-3'>PLACE ORDER</button>
               </div>
             </div>
 
@@ -79,7 +191,7 @@ const PlaceOrder = () => {
 
 
       
-    </div>
+    </form>
   )
 }
 

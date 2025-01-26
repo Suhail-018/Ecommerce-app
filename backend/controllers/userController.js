@@ -38,6 +38,11 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
      try {
         const { name, email, password } = req.body;
+        // console.log({
+        //   name,
+        //   email,
+        //   password,
+        // });
         let exists = await userModel.findOne({ email });
         if (exists) {
           return res.status(400).json({ msg: 'User already exists' });
@@ -74,7 +79,7 @@ const registerUser = async (req, res) => {
 const adminLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(req.body);
+        console.log(req);
         
       
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {

@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { getUserCart } from "../../../backend/controllers/cartController";
 
 
 export const ShopContext = createContext();
@@ -53,6 +54,20 @@ const addToCart = async (itemId, size) => {
             }
             setCartItems(cartData)
 
+            if (token) {
+              try {
+                await axios.post(
+                  backendUrl + '/api/cart/add',
+                  { itemId, size },
+                  { headers: { token } }
+                );
+              } catch (error) {
+                console.log(error);
+                toast.error(error.message);
+              }
+            }
+            
+
 
 }
 
@@ -80,6 +95,19 @@ const updateQuantity = async (itemId, size, quantity) => {
   
     // Set the updated cart data
     setCartItems(cartData);
+    if (token) {
+      try {
+        await axios.post(
+          backendUrl + '/api/cart/update',
+          { itemId, size, quantity },
+          { headers: { token } }
+        );
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
+    
   };
 
   const getCartAmount =  () => {
@@ -133,14 +161,47 @@ const getProductsData = async () => {
   }
 };
 
+
+
+
 useEffect(() => {
   getProductsData();
 }, [products]);
 
+//  getcardata from database
+const getUserCart = async (token) => {
+  try {
+    const response = await axios.post(
+      backendUrl + '/api/cart/get',
+      {},
+      { headers: { token } }
+    );
+
+    if (response.data.success) {
+      setCartItems(response.data.cartData);
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
+
+useEffect(()=>{
+
+    if (!token && localStorage.getItem('token')) {
+    
+    setToken(localStorage.getItem('token'))
+    getUserCart(localStorage.getItem('token'))
+    
+    }
+    
+  }, [])
+
 
 const value = {
 products, currency, delivery_fee, search, setSearch, showSearch,
- setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl, token, setToken
+ setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl, token, setToken, setCartItems
 }
 return (
 

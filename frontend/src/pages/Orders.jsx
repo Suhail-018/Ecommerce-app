@@ -1,9 +1,59 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Title from '../components/Title'
 import { ShopContext } from '../context/ShopContext'
 
 const Orders = () => {
-   const  {products, currency} = useContext(ShopContext)
+//    const  {products, currency} = useContext(ShopContext)
+const { backendUrl, token, currency } = useContext(ShopContext);
+
+const [orderData, setOrderData] = useState([]);
+
+const loadOrderData = async () => {
+    try {
+      if (!token) {
+        return null;
+      }
+  
+      const response = await axios.post(
+        backendUrl + '/api/order/userorders',
+        {},
+        { headers: { token } }
+      );
+  
+    //   console.log(response.data);
+    if (response.data.success) {
+        let allOrdersItem = [];
+  
+        response.data.orders.forEach((order) => {
+          order.items.forEach((item) => {
+            item['status'] = order.status;
+            item['payment'] = order.payment;
+            item['paymentMethod'] = order.paymentMethod;
+            item['date'] = order.date;
+            allOrdersItem.push(item);
+          });
+        });
+  
+        setOrderData(allOrdersItem.reverse()); // Assuming `setOrderData` updates the order state
+      } else {
+        console.error('Failed to load orders:', response.data.message);
+      }
+  
+    //   if (response.data.success) {
+    //     setOrderData(response.data.orders); // Assuming `setOrderData` updates the order state
+    //   } else {
+    //     console.error('Failed to load orders:', response.data.message);
+    //   }
+    } catch (error) {
+      console.error('Error loading orders:', error.message);
+    }
+  };
+  
+  useEffect(() => {
+    loadOrderData();
+  }, [token]); // Dependency array to ensure it runs only once on component mount
+  
+
   return (
     <div className='border-t pt-16'> 
                 <div className="text-2xl">
@@ -12,7 +62,7 @@ const Orders = () => {
 
                 <div>
                         {
-                            products.slice(1, 4).map((item, index) => (
+                            orderData.map((item, index) => (
                                 <div key={index} className="py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                         <div className="flex items-start gap-6 text-sm">
                                             {/* Add content here */}
