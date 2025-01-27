@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Title from '../components/Title'
 import { ShopContext } from '../context/ShopContext'
+import axios from 'axios';
 
 const Orders = () => {
 //    const  {products, currency} = useContext(ShopContext)
@@ -20,12 +21,12 @@ const loadOrderData = async () => {
         { headers: { token } }
       );
   
-    //   console.log(response.data);
+      console.log(response.data);
     if (response.data.success) {
         let allOrdersItem = [];
   
-        response.data.orders.forEach((order) => {
-          order.items.forEach((item) => {
+        response.data.orders.map((order) => {
+          order.items.map((item) => {
             item['status'] = order.status;
             item['payment'] = order.payment;
             item['paymentMethod'] = order.paymentMethod;
